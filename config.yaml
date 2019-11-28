@@ -1,0 +1,11 @@
+server:
+  hostname: asf.icla.online
+  url:      http://asf.icla.online
+  whoami:  "ICLA.online - Online Contributor License Agreement submission service"
+
+email:
+  sender: "icla.online <no-reply@icla.online>"
+
+storage:
+  pdf:    /x1/icla/pdfs/
+  tokens: /x1/icla/tokens/
