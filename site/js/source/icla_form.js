@@ -22,7 +22,10 @@ function submit_callback(state, json) {
         wizard.inject(_h2("ICLA Submitted!"));
         wizard.inject(_p("Your ICLA PDF has been generated and submitted to the organisation for review. You should receive a receipt via email once when agreement has been properly filed."));
         wizard.inject(_p("You may additionally view or download your ICLA here for safe keeping:"));
-        wizard.inject(_p({style: { textAlign: 'center'}}, _a({href: `viewpdf.cgi?id=${json.file}`}, _img({src: 'images/pdf.png', style: {width: '32px'}})) ));
+        wizard.inject(_p({style: { textAlign: 'center'}}, _a({href: `viewpdf.cgi?id=${json.file}`}, [
+            _img({src: 'images/pdf.png', style: {width: '32px'}}),
+            txt(` ${json.file}`)
+            ]) ));
     } else {
         alert("Something went wrong :(");
     }
