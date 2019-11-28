@@ -110,11 +110,13 @@ function wizard_step(x) {
                 }
             });
             ff.inject(inp);
+            inp.focus();
         }
         
         if (question.type == 'multiline') {
             let inp = new HTML('textarea', {id: 'field_'+question.id}, value);
             ff.inject(inp);
+            inp.focus();
         }
         
         if (question.type == 'select') {
