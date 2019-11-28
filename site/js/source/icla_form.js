@@ -120,6 +120,8 @@ function wizard_step(x) {
         if (question.type == 'select') {
             let inp = new HTML('select', {id: 'field_'+question.id});
             let vals = question.list||[];
+            let xopt = new HTML('option', {value: '', selected: (vals[n] ==  value) ? 'selected' : null}, '');
+            inp.inject(xopt);
             for (let n = 0; n < vals.length; n++) {
                 let opt = new HTML('option', {value: vals[n], selected: (vals[n] ==  value) ? 'selected' : null}, vals[n]);
                 inp.inject(opt);
