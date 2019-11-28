@@ -7,8 +7,7 @@ html {
 #wizard {
     background: #FFF;
     border-radius: 4px;
-    width: 95%;
-    max-width: 640px;
+    width: 680px;
     margin: 60px auto;
     min-height: 50%;
     display: block;
