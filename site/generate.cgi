@@ -33,7 +33,7 @@ if re.match(r"^[-a-f0-9]+$", token):
     fpath = os.path.join(yml['storage']['tokens'], token)
     if os.path.exists(fpath):
         answers['email'] = open(fpath).read().strip()
-#        os.unlink(fpath)
+        os.unlink(fpath)
 
         html = open("../recipients/%s.template.html" % recipient, encoding='utf-8').read()
         html = re.sub(r"\$([a-z]+)", lambda v: answers.get(v.group(1), u"???"), html)
