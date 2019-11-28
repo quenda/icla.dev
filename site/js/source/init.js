@@ -12,7 +12,7 @@ function verify_callback(state, json) {
     document.getElementById('wizard').innerHTML = "<h5>An email with instructions on how to continue has been sent to your email address. Be sure to check your spam folder.</h5>";
 }
 
-function verify()  {
+function verify(recipient)  {
     let email = document.getElementById('field_email').value;
-    POST('/validate.cgi', verify_callback, {email: email}, null, {token: recaptcha, email: email});
+    POST('/validate.cgi', verify_callback, {email: email}, null, {token: recaptcha, email: email, recipient: recipient});
 }

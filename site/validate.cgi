@@ -11,8 +11,12 @@ import yaml
 
 LETTER = """Hi there,
 You (or someone else) is trying to sign a contributor license agreement
-using %(hostname)s. If this is you, please visit the following URL to
-continue your process: %(url)s/icla.html?%(lid)s
+using %(hostname)s. In order to verify the integrity of the email
+address associated with the ICLA, we have sent this verification email,
+as this email address will act as the primary means of communication
+between you and %(recipient)s.
+If this is you, please visit the following URL to continue your process:
+%(url)s/icla.html?%(lid)s
 
 If this was not you, you can safely ignore this email.
 
@@ -26,9 +30,10 @@ js = json.loads(sys.stdin.read())
 remoteip = os.environ.get('REMOTE_ADDR', '')
 response = js['token']
 email = js['email']
+recipient = js['recipient']
 
 rv = requests.post('https://www.google.com/recaptcha/api/siteverify', data = {
-    'secret': 'YOUR_SECRET_HERE',
+    'secret': yml['captcha']['secret'],
     'response': response,
     'remoteip': remoteip
 });
@@ -40,6 +45,11 @@ if rv.status_code == 200:
     if rjson['score'] < 0.75:
         sucess = False
 
+if re.match(r"^[-a-z0-9]+$", recipient):
+    ryml = yaml.safe_load(open('../recipients/%s.yaml' % recipient).read())
+else:
+    success = False
+
 if success:
     lid = str(uuid.uuid4())
     with open(os.path.join(yml['storage']['tokens'], lid), "w") as f:
@@ -48,6 +58,7 @@ if success:
 
     varlist = {
         'lid': lid,
+        'recipient': ryml['meta']['owner'],
         'hostname': yml['server']['hostname'],
         'whoami': yml['server']['whoami'],
         'url': yml['server']['url'],

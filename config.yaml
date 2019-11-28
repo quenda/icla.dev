@@ -9,3 +9,6 @@ email:
 storage:
   pdf:    /x1/icla/pdfs/
   tokens: /x1/icla/tokens/
+
+captcha:
+  secret:  YOUR_SECRET_HERE
