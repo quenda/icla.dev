@@ -53,23 +53,24 @@ if re.match(r"^[-a-f0-9]+$", token):
             if os.path.exists("%s.map.yaml" % template_path_pdf):
                 pdfmap = yaml.safe_load(open("%s.map.yaml" % template_path_pdf).read())
             template_pdf = pdfrw.PdfReader(template_path_pdf)
-            annotations = template_pdf.pages[0][PDF_ANNOT_KEY]
-            for annotation in annotations:
-                if annotation[PDF_SUBTYPE_KEY] == PDF_WIDGET_SUBTYPE_KEY:
-                    if annotation[PDF_ANNOT_FIELD_KEY]:
-                        key = annotation[PDF_ANNOT_FIELD_KEY][1:-1]
-                        keys.append(key)
-                        if key in answers.keys():
-                            annotation.update(
-                                pdfrw.PdfDict(V='{}'.format(answers[key]))
-                            )
-                        elif key in pdfmap.values():
-                            xk = ''
-                            for k,v in pdfmap.items():
-                                if v == key: xk = k
-                            annotation.update(
-                                pdfrw.PdfDict(V='{}'.format(answers.get(xk, '')))
-                            )
+            for page in template_pdf.pages:
+                for annotation in page[PDF_ANNOT_KEY]:
+                    if annotation[PDF_SUBTYPE_KEY] == PDF_WIDGET_SUBTYPE_KEY:
+                        
+                        if annotation[PDF_ANNOT_FIELD_KEY]:
+                            key = annotation[PDF_ANNOT_FIELD_KEY][1:-1]
+                            keys.append(key)
+                            if key in answers.keys():
+                                annotation.update(
+                                    pdfrw.PdfDict(V='{}'.format(answers[key].replace("\n", ", ")))
+                                )
+                            elif key in pdfmap.values():
+                                xk = ''
+                                for k,v in pdfmap.items():
+                                    if v == key: xk = k
+                                annotation.update(
+                                    pdfrw.PdfDict(V='{}'.format(answers.get(xk, '').replace("\n", ", ")))
+                                )
             pdfrw.PdfWriter().write(pdfpath, template_pdf)
         else:
             html = open(template_path_html, encoding='utf-8').read()
