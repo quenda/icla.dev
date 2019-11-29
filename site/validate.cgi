@@ -16,7 +16,7 @@ address associated with the ICLA, we have sent this verification email,
 as this email address will act as the primary means of communication
 between you and %(recipient)s.
 If this is you, please visit the following URL to continue your process:
-%(url)s/icla.html?%(lid)s
+https://%(url)s/icla.html?%(lid)s
 
 If this was not you, you can safely ignore this email.
 
