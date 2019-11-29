@@ -3,4 +3,21 @@ icla.dev is a simple submission service for gathering information and turning th
 
 the `recipients` directory in this dir contains the various configured recipients and their templates, pull requests are most welcome!
 
-More to come later..
+
+## How to install and run
+To run this yourself, you'll need:
+
+- a web server with CGI
+- python3 installed, plus the mods in `requirements.txt`
+- postfix or similar mail server
+- a google captcha API key-set
+
+To install:
+- Clone the repo, get the python deps with `pip3 install -r requirements.txt`
+- Set up web server (for instance apache2 with mod_cgid)
+- Set up postfix
+- Get the google API keys, add them and any other settings to config.yaml
+- Install your recipients into the `recipients` directory.
+
+And that should be it!
+
