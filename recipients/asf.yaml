@@ -1,7 +1,7 @@
 ---
 meta:
   owner: The Apache Software Foundation
-  recipient: humbedooh-secretary@apache.org
+  recipient: secretary@apache.org
 questions:
 - id: legalname
   type: string
