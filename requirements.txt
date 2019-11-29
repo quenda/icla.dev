@@ -1,0 +1,6 @@
+requests
+pymupdf==1.16.0
+pdfrw
+weasyprint
+asfpy
+pyyaml
