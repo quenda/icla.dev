@@ -93,7 +93,7 @@ if re.match(r"^[-a-f0-9]+$", token):
             last_page.insertImage(image_rectangle, filename="%s.sig.png" % pdfpath)
             pdfpath = pdfpath[:-3] + "signed.pdf"
             file_handle.save(pdfpath)
-            pdfid += pdfpath[:-3] + "signed.pdf"
+            pdfid = pdfid[:-3] + "signed.pdf"
             
         else:
             html = open(template_path_html, encoding='utf-8').read()
