@@ -61,7 +61,7 @@ if success:
         'recipient': ryml['meta']['owner'],
         'hostname': yml['server']['hostname'],
         'whoami': yml['server']['whoami'],
-        'url': yml['server']['url'],
+        'url': os.environ.get('HTTP_HOST', yml['server']['url']),
     }
     
     asfpy.messaging.mail(
