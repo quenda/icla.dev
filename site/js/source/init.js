@@ -14,5 +14,9 @@ function verify_callback(state, json) {
 
 function verify(recipient)  {
     let email = document.getElementById('field_email').value;
+    if (!email.match(/^\S+@\S+?\.\S+?$/)) {
+        alert("Please enter a valid email adress!");
+        return
+    }
     POST('/validate.cgi', verify_callback, {email: email}, null, {token: recaptcha, email: email, recipient: recipient});
 }

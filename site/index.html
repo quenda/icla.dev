@@ -7,11 +7,19 @@
     <body onload="primer();">
         <div id="wizard">
             <h3>ICLA Submission Service</h3>
+            <p style="padding: 20px; text-align: center;">
+                This service allows you to fill out, sign and submit an ICLA using your browser.<br/><br/>
+                <b>Please enter your primary email address to begin the ICLA process</b>:<br/>
+                <input type="text" style="margin: 10px;" id="field_email" placeholder="foo@bar.baz"><br/>
+                <button style="margin: 0px; font-size: 22px;" onclick="verify(window.location.hostname.split('.')[0]);">Verify my address</button>
+            </p>
             <p style="padding: 20px;">
-                This service allows you to fill out, sign and submit an ICLA using your browser.<br/>
-                Please enter your primary email address to begin the ICLA process:<br/>
-                <input type="text" id="field_email">
-                <input type="button" onclick="verify(window.location.hostname.split('.')[0]);" value="Verify my email address">
+                <i>Once you have submitted your email address to the
+                system, you will receive a link to continue the ICLA
+                process. We perform this step to ensure that you are
+                indeed the owner of the email address, thus ensuring
+                that the ICLA will be correctly filed and further
+                communication with you is possible.</i>
             </p>
         </div>
     <script src="js/icla.js" type="text/javascript" async="false"></script>
