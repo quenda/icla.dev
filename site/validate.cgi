@@ -22,6 +22,7 @@ If this was not you, you can safely ignore this email.
 
 With regards,
 %(whoami)s
+https://%(hostname)s
 """
 
 yml = yaml.safe_load(open('../config.yaml').read())
