@@ -91,9 +91,9 @@ if re.match(r"^[-a-f0-9]+$", token):
             cy = last_page.rect[3] - 100
             image_rectangle = fitz.Rect(cx-200, cy, cx, cy+100)
             last_page.insertImage(image_rectangle, filename="%s.sig.png" % pdfpath)
-            pdfpath += ".signed.pdf"
+            pdfpath = pdfpath[:-3] + "signed.pdf"
             file_handle.save(pdfpath)
-            pdfid += ".signed"
+            pdfid += pdfpath[:-3] + "signed.pdf"
             
         else:
             html = open(template_path_html, encoding='utf-8').read()
