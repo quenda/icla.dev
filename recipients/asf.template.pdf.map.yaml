@@ -5,4 +5,4 @@ country:        Country
 telephone:      Telephone
 email:          E-mail
 uid:            Preferred Apache id\(s\)
-notfy:          Notify Project
+project:        Notify Project
