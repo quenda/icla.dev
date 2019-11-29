@@ -20,4 +20,4 @@ To install:
 - Install your recipients into the `recipients` directory.
 
 And that should be it!
-
+If pip3 fails on pymupdf, and you use a debian based OS, install the libmupdf-dev package first; `apt install libmupdf-dev`
