@@ -55,10 +55,10 @@ if re.match(r"^[-a-f0-9]+$", token):
         
         body = "Please see attached ICLA from %s, filed via %s.\nWith regards,\n%s\n" % (answers['legalname'], remoteip, yml['server']['whoami'])
         msg = email.mime.multipart.MIMEMultipart()
-        msg['Subject'] = "[%s] ICLA for %s" % (yml['server']['hostname'], answers['legalname'])
+        msg['Subject'] = "[%s] ICLA for %s" % (yml['server']['hostname'], answers['publicname'])
         msg['From'] = yml['email']['sender']
         msg['To'] = ryml['meta']['recipient']
-        msg['Reply-To'] = answers['email']
+        msg['Reply-To'] = "%s <%s>" % (answers['publicname'], answers['email'])
         msg['Message-ID'] = str(email.utils.make_msgid())
         msg.preamble = "This shouldn't show up..."
         msg.attach( email.mime.text.MIMEText( body, 'plain' ) )
