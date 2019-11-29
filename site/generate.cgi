@@ -9,6 +9,15 @@ import requests
 import yaml
 import datetime
 from weasyprint import HTML, CSS
+import pdfrw
+
+PDF_ANNOT_KEY = '/Annots'
+PDF_ANNOT_FIELD_KEY = '/T'
+PDF_ANNOT_VAL_KEY = '/V'
+PDF_ANNOT_RECT_KEY = '/Rect'
+PDF_SUBTYPE_KEY = '/Subtype'
+PDF_WIDGET_SUBTYPE_KEY = '/Widget'
+
 
 yml = yaml.safe_load(open('../config.yaml').read())
 js = json.loads(sys.stdin.read())
@@ -33,16 +42,42 @@ if re.match(r"^[-a-f0-9]+$", token):
     fpath = os.path.join(yml['storage']['tokens'], token)
     if os.path.exists(fpath):
         answers['email'] = open(fpath).read().strip()
-        os.unlink(fpath)
-
-        html = open("../recipients/%s.template.html" % recipient, encoding='utf-8').read()
-        html = re.sub(r"\$([a-z]+)", lambda v: answers.get(v.group(1), u"???"), html)
-        
-        css = [CSS(string="""@page { size: letter; margin: 1cm }""")]
         pdfid = str(uuid.uuid4()) + ".pdf"
         pdfpath = os.path.join(yml['storage']['pdf'], pdfid);
-        HTML(string=html, encoding='utf-8', base_url = './').write_pdf(pdfpath, stylesheets=css)
-        
+        os.unlink(fpath)
+        keys = []
+        template_path_pdf = "../recipients/%s.template.pdf" % recipient
+        template_path_html = "../recipients/%s.template.html" % recipient
+        if (os.path.exists(template_path_pdf)):
+            pdfmap = {}
+            if os.path.exists("%s.map.yaml" % template_path_pdf):
+                pdfmap = yaml.safe_load(open("%s.map.yaml" % template_path_pdf).read())
+            template_pdf = pdfrw.PdfReader(template_path_pdf)
+            annotations = template_pdf.pages[0][PDF_ANNOT_KEY]
+            for annotation in annotations:
+                if annotation[PDF_SUBTYPE_KEY] == PDF_WIDGET_SUBTYPE_KEY:
+                    if annotation[PDF_ANNOT_FIELD_KEY]:
+                        key = annotation[PDF_ANNOT_FIELD_KEY][1:-1]
+                        keys.append(key)
+                        if key in answers.keys():
+                            annotation.update(
+                                pdfrw.PdfDict(V='{}'.format(answers[key]))
+                            )
+                        elif key in pdfmap.values():
+                            xk = ''
+                            for k,v in pdfmap.items():
+                                if v == key: xk = k
+                            annotation.update(
+                                pdfrw.PdfDict(V='{}'.format(answers.get(xk, '')))
+                            )
+            pdfrw.PdfWriter().write(pdfpath, template_pdf)
+        else:
+            html = open(template_path_html, encoding='utf-8').read()
+            html = re.sub(r"\$([a-z]+)", lambda v: answers.get(v.group(1), u"???"), html)
+            
+            css = [CSS(string="""@page { size: letter; margin: 1cm }""")]
+            HTML(string=html, encoding='utf-8', base_url = './').write_pdf(pdfpath, stylesheets=css)
+            
         js = {
             "file": pdfid
         }
