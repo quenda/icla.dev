@@ -2,7 +2,7 @@ legalname:      Full Name
 publicname:     Public Name
 postaladdress:  Mailing Address
 country:        Country
-phone:          Telephone
+telephone:      Telephone
 email:          E-mail
 uid:            Preferred Apache id\(s\)
 notfy:          Notify Project
