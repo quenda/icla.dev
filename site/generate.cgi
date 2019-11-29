@@ -8,8 +8,10 @@ import os
 import requests
 import yaml
 import datetime
+import base64
 from weasyprint import HTML, CSS
 import pdfrw
+import fitz
 
 PDF_ANNOT_KEY = '/Annots'
 PDF_ANNOT_FIELD_KEY = '/T'
@@ -49,6 +51,15 @@ if re.match(r"^[-a-f0-9]+$", token):
         template_path_pdf = "../recipients/%s.template.pdf" % recipient
         template_path_html = "../recipients/%s.template.html" % recipient
         if (os.path.exists(template_path_pdf)):
+            
+            # Save signature first
+            png_recovered = base64.decodestring(bytes(answers.get('signature')[22:], 'ascii'))
+            with open("%s.sig.png" % pdfpath, "wb") as f:
+                f.write(png_recovered)
+                f.close()
+            
+            
+            
             pdfmap = {}
             if os.path.exists("%s.map.yaml" % template_path_pdf):
                 pdfmap = yaml.safe_load(open("%s.map.yaml" % template_path_pdf).read())
@@ -72,6 +83,18 @@ if re.match(r"^[-a-f0-9]+$", token):
                                     pdfrw.PdfDict(V='{}'.format(answers.get(xk, '').replace("\n", ", ")))
                                 )
             pdfrw.PdfWriter().write(pdfpath, template_pdf)
+            
+            # Add sig to PDF
+            file_handle = fitz.open(pdfpath)
+            last_page = file_handle[-1]
+            cx = last_page.rect[2] / 2
+            cy = last_page.rect[3] - 100
+            image_rectangle = fitz.Rect(cx-200, cy, cx, cy+100)
+            last_page.insertImage(image_rectangle, filename="%s.sig.png" % pdfpath)
+            pdfpath += ".signed.pdf"
+            file_handle.save(pdfpath)
+            pdfid += ".signed"
+            
         else:
             html = open(template_path_html, encoding='utf-8').read()
             html = re.sub(r"\$([a-z]+)", lambda v: answers.get(v.group(1), u"???"), html)
