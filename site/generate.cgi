@@ -49,12 +49,11 @@ if re.match(r"^[-a-f0-9]+$", token):
         
         pdfdata = open(pdfpath, "rb").read()
         import smtplib
-        #from email.message import EmailMessage
         import email.mime.text, email.header
         import email.mime.multipart
         import email.mime.application
         
-        body = "Please see attached ICLA.\n With regards,\n%s\n" % yml['server']['whoami']
+        body = "Please see attached ICLA from %s, filed via %s.\nWith regards,\n%s\n" % (answers['legalname'], remoteip, yml['server']['whoami'])
         msg = email.mime.multipart.MIMEMultipart()
         msg['Subject'] = "[%s] ICLA for %s" % (yml['server']['hostname'], answers['legalname'])
         msg['From'] = yml['email']['sender']
