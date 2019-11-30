@@ -239,7 +239,7 @@ a.button.left .round {
   position: absolute;
   display: inline-block;
   right: 3px;
-  top: 3px;
+  top: 1px;
   transition: all 0.3s ease-out;
   z-index: 2;
 }
@@ -251,7 +251,7 @@ a.button.right .round {
   position: absolute;
   display: inline-block;
   right: 3px;
-  top: 3px;
+  top: 1px;
   transition: all 0.3s ease-out;
   z-index: 2;
 }
