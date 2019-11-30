@@ -19,7 +19,7 @@ PDF_ANNOT_VAL_KEY = '/V'
 PDF_ANNOT_RECT_KEY = '/Rect'
 PDF_SUBTYPE_KEY = '/Subtype'
 PDF_WIDGET_SUBTYPE_KEY = '/Widget'
-
+ANNOTATE = True
 
 yml = yaml.safe_load(open('../config.yaml').read())
 js = json.loads(sys.stdin.read())
@@ -65,23 +65,38 @@ if re.match(r"^[-a-f0-9]+$", token):
                 pdfmap = yaml.safe_load(open("%s.map.yaml" % template_path_pdf).read())
             template_pdf = pdfrw.PdfReader(template_path_pdf)
             for page in template_pdf.pages:
-                for annotation in page[PDF_ANNOT_KEY]:
-                    if annotation[PDF_SUBTYPE_KEY] == PDF_WIDGET_SUBTYPE_KEY:
-                        
-                        if annotation[PDF_ANNOT_FIELD_KEY]:
-                            key = annotation[PDF_ANNOT_FIELD_KEY][1:-1]
-                            keys.append(key)
-                            if key in answers.keys():
-                                annotation.update(
-                                    pdfrw.PdfDict(V='{}'.format(answers[key].replace("\n", ", ")))
-                                )
-                            elif key in pdfmap.values():
-                                xk = ''
-                                for k,v in pdfmap.items():
-                                    if v == key: xk = k
-                                annotation.update(
-                                    pdfrw.PdfDict(V='{}'.format(answers.get(xk, '').replace("\n", ", ")))
-                                )
+                if ANNOTATE:
+                    for annotation in page[PDF_ANNOT_KEY]:
+                        if annotation[PDF_SUBTYPE_KEY] == PDF_WIDGET_SUBTYPE_KEY:
+                            
+                            if annotation[PDF_ANNOT_FIELD_KEY]:
+                                key = annotation[PDF_ANNOT_FIELD_KEY][1:-1]
+                                keys.append(key)
+                                if key in answers.keys():
+                                    annotation.update(
+                                        pdfrw.PdfDict(V='{}'.format(answers[key].replace("\n", ", ")))
+                                    )
+                                elif key in pdfmap.values():
+                                    xk = ''
+                                    for k,v in pdfmap.items():
+                                        if v == key: xk = k
+                                    annotation.update(
+                                        pdfrw.PdfDict(AP='{}'.format(answers.get(xk, '').replace("\n", ", ")), V='{}'.format(answers.get(xk, '').replace("\n", ", ")))
+                                    )
+                else:
+                    for field in template_pdf.Root.AcroForm.Fields:
+                        key = field.T[1:-1]
+                        v = None
+                        if key in answers.keys():
+                            v = answers[key].replace("\n", ", ")
+                        elif key in pdfmap.values():
+                            xk = ''
+                            for k,v in pdfmap.items():
+                                if v == key: xk = k
+                            v = answers.get(xk, '').replace("\n", ", ")
+                        if v:
+                            field.V = v
+                            
             pdfrw.PdfWriter().write(pdfpath, template_pdf)
             
             # Add sig to PDF
