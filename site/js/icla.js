@@ -874,6 +874,7 @@ function wizard_step(x) {
         for (let i = 0; i < questions.length; i++) {
             if (questions[i].required && (answers[question[i].id]|'').length == 0) {
                 alert(`Please complete step ${i+1} before you sign`);
+                wizard_step(i+1);
                 return false;
             }
         }
