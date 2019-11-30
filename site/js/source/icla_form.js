@@ -65,7 +65,7 @@ function gateway_callback(state, json) {
     questions = json.questions;
     rdata = json;
     if (!questions) {
-        wizard.innerHTML = "Invalid recipient or token presented!";
+        wizard.innerHTML = "Invalid recipient or token presented! If you have already completed the ICLA process once using this token, you will need to re-validate your email address <a href='./'>here</a>.";
         return;
     }
     
