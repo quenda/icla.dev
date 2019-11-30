@@ -870,6 +870,14 @@ function pre_wizard() {
 function wizard_step(x) {
     document.getElementById('wtitle').style.display = 'block';
     document.getElementById('steps').style.display = 'block';
+    if (x == questions.length) {
+        for (let i = 0; i < questions.length; i++) {
+            if (questions[i].required && (answers[question[i].id]|'').length == 0) {
+                alert(`Please complete step ${i+1} before you sign`);
+                return false;
+            }
+        }
+    }
     if (curstep != x && curstep < questions.length) {
         let q = questions[curstep];
         let val = document.getElementById('field_' + q.id).value;
