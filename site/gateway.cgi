@@ -11,7 +11,7 @@ js = json.loads(sys.stdin.read())
 
 token = js['token']
 recipient = js['recipient']
-js = '{"error": "Invalid token or recipient organization"}'
+js = '{"error": "Invalid token or recipient organization. If you have already completed the ICLA process, you will need a new token to redo the process."}'
 
 if re.match(r"^[-a-f0-9]+$", token):
     fpath = os.path.join(yml['storage']['tokens'], token)
