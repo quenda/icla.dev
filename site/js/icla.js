@@ -794,6 +794,10 @@ function submit_callback(state, json) {
 
 function wizard_submit() {
     answers.signature = signaturePad.toDataURL();
+    let wizard = document.getElementById('wizard');
+    wizard.innerHTML = '';
+    wizard.inject(_h2('Submitting, please wait...'));
+    wizard.inject(_img({src: 'images/spinner.gif', style: { display: 'block', margin: '0 auto'}}));
     globData.answers = answers;
     POST('/generate.cgi', submit_callback, {}, null, globData);
 }
