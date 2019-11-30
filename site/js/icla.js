@@ -946,7 +946,7 @@ function wizard_step(x) {
         let btn = prettybutton('Previous', 'left', `wizard_step(${x-1})`, color = 'green');
         qw.inject(btn);
         
-        let sbtn = prettybutton('Submit ICLA', 'right', `wizard_submit`, color = 'blue');
+        let sbtn = prettybutton('Submit ICLA', 'right', `wizard_submit()`, color = 'blue');
         qw.inject(sbtn);
     } else {
         if (x > 0) {
