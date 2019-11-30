@@ -837,6 +837,21 @@ function gateway_callback(state, json) {
     pre_wizard();
 }
 
+function prettybutton(txt, dir, onclick, color = 'green') {
+    let btn = _a({href:'#', onclick: `javascript:void(${onclick});`, class: `button button-${color} ${dir}`});
+    let span = _span({class: 'btn-text'}, txt);
+    if (dir == 'right') {
+        let cur = _span({class: 'round'}, _i({class: 'fa fa-chevron-right'}));
+        btn.inject(span);
+        btn.inject(cur);
+    } else {
+        let cur = _span({class: 'round'}, _i({class: 'fa fa-chevron-left'}));
+        btn.inject(cur);
+        btn.inject(span);
+    }
+    return btn;
+}
+
 function pre_wizard() {
     let qw = document.getElementById('question_wrapper');
     let t = _h3(`Submission form for the ${rdata.agreement.title}`);
@@ -844,7 +859,7 @@ function pre_wizard() {
     let d = _p(`Great, we've verified your email address and the ICLA process can begin. Once you click the button below you will be guided through the ${questions.length} questions needed before you can sign the ICLA, and finally presented with the agreement to sign. Once completed, a PDF document will be generated and sent to ${rdata.meta.owner}.`);
     qw.inject(d);
     
-    let btn = new HTML('button', {style: {display: 'block', overflow: 'auto', margin: '0 auto', marginBottom: '32px', background: '#2150d1'}, onclick: 'wizard_step(0);'}, 'Begin the ICLA submission process');
+    let btn = prettybutton('Begin submission process', 'right', 'wizard_step(0)', color = 'blue');
     qw.inject(btn);
 }
 
@@ -928,18 +943,18 @@ function wizard_step(x) {
         qw.inject(cdiv);
         initCanvas(canvas);
         
-        let btn = new HTML('button', { style: { float: 'left'}, onclick: `wizard_step(${x-1});`}, "Previous");
+        let btn = prettybutton('Previous', 'left', `wizard_step(${x-1})`, color = 'green');
         qw.inject(btn);
         
-        let sbtn = new HTML('button', { style: { background: '#2150d1', float: 'right'}, onclick: `wizard_submit();`}, "Submit ICLA");
+        let sbtn = prettybutton('Submit ICLA', 'right', `wizard_submit`, color = 'blue');
         qw.inject(sbtn);
     } else {
         if (x > 0) {
-            let btn = new HTML('button', { style: { float: 'left'}, onclick: `wizard_step(${x-1});`}, "Previous");
+            let btn = prettybutton('Previous', 'left', `wizard_step(${x-1})`, color = 'green');
             qw.inject(btn);
         }
         if (x < questions.length) {
-            let btn = new HTML('button', { style: { float: 'right'}, onclick: `wizard_step(${x+1});`}, "Next");
+            let btn = prettybutton('Next', 'right', `wizard_step(${x+1})`, color = 'green');
             qw.inject(btn);
         }
     }

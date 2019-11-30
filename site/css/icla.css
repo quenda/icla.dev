@@ -181,3 +181,116 @@ canvas {
     margin: 20px;
   }
 }
+
+.button-blue {
+  background-color: #00AFD1;
+}
+.button-blue .round {
+  background-color: #00c4eb;
+}
+
+.button-green {
+  background-color: #AFD100;
+}
+.button-green .round {
+  background-color: #c4eb00;
+}
+
+a.button.left {
+  text-decoration: none;
+  border-radius: 30px;
+  padding: 12px 23px 12px 53px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s;
+  display: inline-block;
+  margin: 8px;
+}
+
+
+a.button.right {
+  text-decoration: none;
+  border-radius: 30px;
+  padding: 12px 53px 12px 23px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s;
+  display: inline-block;
+  margin: 8px;
+}
+
+a.button span {
+  position: relative;
+  z-index: 3;
+}
+
+
+a.button.left .round {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  display: inline-block;
+  right: 3px;
+  top: 3px;
+  transition: all 0.3s ease-out;
+  z-index: 2;
+}
+
+a.button.right .round {
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  display: inline-block;
+  right: 3px;
+  top: 3px;
+  transition: all 0.3s ease-out;
+  z-index: 2;
+}
+
+a.button .round i {
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  left: 50%;
+  margin-left: -4px;
+  transition: all 0.3s;
+}
+
+.button span {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+a.button:hover>.round {
+  background: none;
+}
+a.button.right:hover i {
+  left: 70%;
+}
+
+a.button.left:hover i {
+  left: 20%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.left>.round {
+  float: left;
+  right: auto;
+  left: 3px;
+}
