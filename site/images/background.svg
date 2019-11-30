@@ -8,8 +8,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    id="svg8"
    version="1.1"
-   viewBox="0 0 210.91072 163.66368"
-   height="163.66368mm"
+   viewBox="0 0 210.91072 415.43158"
+   height="415.43158mm"
    width="210.91072mm">
   <defs
      id="defs2">
@@ -47,7 +47,7 @@
          style="stop-color:#00abff;stop-opacity:1" />
     </linearGradient>
     <linearGradient
-       gradientTransform="matrix(1,0,0,1.1895604,0,-7.1480083)"
+       gradientTransform="matrix(1,0,0,3.0194906,0,-76.151635)"
        gradientUnits="userSpaceOnUse"
        y2="37.708332"
        x2="211.66667"
@@ -76,46 +76,48 @@
        id="radialGradient833-3"
        xlink:href="#linearGradient868" />
     <clipPath
-       id="clipPath905"
+       id="clipPath956"
        clipPathUnits="userSpaceOnUse">
       <rect
-         ry="0.044127207"
-         rx="0.2200865"
-         y="37.708332"
-         x="0.75595188"
-         height="137.58333"
+         style="opacity:1;fill:url(#linearGradient960);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:6.37284851;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect958"
          width="210.91072"
-         id="rect907"
-         style="opacity:1;fill:url(#linearGradient909);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+         height="349.23117"
+         x="0.75595188"
+         y="37.708332"
+         rx="0.2200865"
+         ry="0.11200918" />
     </clipPath>
     <linearGradient
        y2="37.708332"
        x2="211.66667"
        y1="175.29166"
        x1="0.75595254"
+       gradientTransform="matrix(1,0,0,2.5383248,0,-58.007662)"
        gradientUnits="userSpaceOnUse"
-       id="linearGradient909"
+       id="linearGradient960"
        xlink:href="#linearGradient821" />
     <clipPath
-       id="clipPath911"
+       id="clipPath963"
        clipPathUnits="userSpaceOnUse">
       <rect
-         ry="0.044127207"
-         rx="0.2200865"
-         y="37.708332"
-         x="0.75595188"
-         height="137.58333"
+         style="opacity:1;fill:url(#linearGradient967);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:6.37284851;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect965"
          width="210.91072"
-         id="rect913"
-         style="opacity:1;fill:url(#linearGradient915);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+         height="349.23117"
+         x="0.75595188"
+         y="37.708332"
+         rx="0.2200865"
+         ry="0.11200918" />
     </clipPath>
     <linearGradient
        y2="37.708332"
        x2="211.66667"
        y1="175.29166"
        x1="0.75595254"
+       gradientTransform="matrix(1,0,0,2.5383248,0,-58.007662)"
        gradientUnits="userSpaceOnUse"
-       id="linearGradient915"
+       id="linearGradient967"
        xlink:href="#linearGradient821" />
   </defs>
   <metadata
@@ -131,20 +133,20 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-0.75595188,-37.708332)"
+     transform="translate(-0.75595188,-37.708328)"
      id="layer1">
     <rect
-       ry="0.052491982"
+       ry="0.13324168"
        rx="0.2200865"
-       y="37.708332"
+       y="37.708328"
        x="0.75595254"
-       height="163.66368"
+       height="415.43158"
        width="210.91072"
        id="rect815"
-       style="opacity:1;fill:url(#linearGradient823);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4.362679;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+       style="opacity:1;fill:url(#linearGradient823);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:6.9506731;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
     <ellipse
        transform="matrix(1,0,0,1.1895604,0,-7.1480083)"
-       clip-path="url(#clipPath911)"
+       clip-path="url(#clipPath963)"
        ry="85.044647"
        rx="131.15773"
        cy="166.59822"
@@ -153,7 +155,7 @@
        style="opacity:0.35100002;fill:url(#radialGradient833);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4.33220816;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
     <ellipse
        transform="matrix(1,0,0,1.1895604,0,-7.1480083)"
-       clip-path="url(#clipPath905)"
+       clip-path="url(#clipPath956)"
        ry="116.03869"
        rx="147.78868"
        cy="157.52678"
