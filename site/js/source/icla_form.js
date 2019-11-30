@@ -94,7 +94,7 @@ function wizard_step(x) {
     
     if (x < questions.length) {
         let question = questions[x];
-        let t = _h3(question.question);
+        let t = _h3(`Question ${x+1} of ${questions.length}: ${question.question}`);
         qw.inject(t);
         
         let ff = _div({style: {textAlign: 'center'}});
