@@ -44,6 +44,10 @@ html {
     background: #7ED320;
 }
 
+.step_circle:hover {
+    cursor: pointer;
+}
+
 .step_divider {
     display: inline-block;
     position: relative;
