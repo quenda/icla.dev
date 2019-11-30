@@ -7,9 +7,9 @@ html {
 #wizard {
     background: #FFF;
     border-radius: 4px;
-    width: 680px;
+    width: 720px;
     max-width: 95%;
-    margin: 40px auto;
+    margin: 32px auto;
     min-height: 50%;
     display: block;
     position: relative;
@@ -160,7 +160,7 @@ canvas {
     max-width: calc(100% - 14px);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 680px) {
   #wizard {
     width: 95% !important;
   }
