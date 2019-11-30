@@ -842,7 +842,7 @@ function gateway_callback(state, json) {
 }
 
 function prettybutton(txt, dir, onclick, color = 'green') {
-    let btn = _a({href:'#', onclick: `javascript:void(${onclick});`, class: `button button-${color} ${dir}`});
+    let btn = _a({href:'javascript:void();', onclick: `javascript:void(${onclick});`, class: `button button-${color} ${dir}`});
     let span = _span({class: 'btn-text'}, txt);
     if (dir == 'right') {
         let cur = _span({class: 'round'}, _i({class: 'fa fa-chevron-right'}));
