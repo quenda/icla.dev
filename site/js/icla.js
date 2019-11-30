@@ -826,21 +826,31 @@ function gateway_callback(state, json) {
         return;
     }
     
-    wizard.inject(_h4({style: {textAlign: 'center'}}, rdata.agreement.title));
-    
-    let stepdiv = _div({id: 'steps'});
+    wizard.inject(_h4({style: {textAlign: 'center', display: 'none'}, id: 'wtitle'}, rdata.agreement.title));
+    let stepdiv = _div({id: 'steps', style: {display: 'none'}});
     wizard.inject(stepdiv);
-    make_step_div(questions.length+1, 0);
     
     
     let _question = _div({class: 'question_wrapper', id: 'question_wrapper'});
     wizard.inject(_question);
     
-    wizard_step(0);
+    pre_wizard();
+}
+
+function pre_wizard() {
+    let qw = document.getElementById('question_wrapper');
+    let t = _h3(`Submission form for the ${rdata.agreement.title}`);
+    qw.inject(t);
+    let d = _p(`Great, we've verified your email address and the ICLA process can begin. Once you click the button below you will be guided through the ${questions.length} questions needed before you can sign the ICLA, and finally presented with the agreement to sign. Once completed, a PDF document will be generated and sent to ${rdata.meta.owner}.`);
+    qw.inject(d);
+    
+    let btn = new HTML('button', {style: {display: 'block', overflow: 'auto', margin: '0 auto', marginBottom: '32px', background: '#2150d1'}, onclick: 'wizard_step(0);'}, 'Begin the ICLA submission process');
+    qw.inject(btn);
 }
 
 function wizard_step(x) {
-    
+    document.getElementById('wtitle').style.display = 'block';
+    document.getElementById('steps').style.display = 'block';
     if (curstep != x && curstep < questions.length) {
         let q = questions[curstep];
         let val = document.getElementById('field_' + q.id).value;
