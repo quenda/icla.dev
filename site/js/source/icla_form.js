@@ -109,6 +109,13 @@ function pre_wizard() {
 function wizard_step(x) {
     document.getElementById('wtitle').style.display = 'block';
     document.getElementById('steps').style.display = 'block';
+    
+    if (curstep != x && curstep < questions.length) {
+        let q = questions[curstep];
+        let val = document.getElementById('field_' + q.id).value;
+        answers[q.id] = val;
+        console.log(val);
+    }
     if (x == questions.length) {
         for (let i = 0; i < questions.length; i++) {
             if (questions[i].required && (answers[questions[i].id]||'').length == 0) {
@@ -117,12 +124,6 @@ function wizard_step(x) {
                 return false;
             }
         }
-    }
-    if (curstep != x && curstep < questions.length) {
-        let q = questions[curstep];
-        let val = document.getElementById('field_' + q.id).value;
-        answers[q.id] = val;
-        console.log(val);
     }
     
     make_step_div(questions.length+1, x);
