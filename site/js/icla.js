@@ -911,7 +911,7 @@ function wizard_step(x) {
         qw.inject(agreement);
         
         let cdiv = _div({style: {textAlign: 'center'}});
-        cdiv.inject(_div({}, _b("BY SIGNING BELOW YOU ACKNOWLEDGE THE ABOVE LICENSE AGREEMENT:")));
+        cdiv.inject(_div({}, _b("BY SIGNING BELOW YOU ACKNOWLEDGE AND WILL OBEY THE ABOVE LICENSE AGREEMENT:")));
         let canvas =  new HTML('canvas', {id: 'signature'});
         cdiv.inject(canvas);
         cdiv.inject(_div({}, _i("Use your mouse, stylus or finger to sign in the above signature field.")));
