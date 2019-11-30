@@ -4,6 +4,7 @@
         <title>Online ICLA submission</title>
         <link crossorigin="anonymous" media="all" rel="stylesheet" href="/css/icla.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body onload="primer();">
         <div id="wizard">
@@ -11,8 +12,10 @@
             <p style="padding: 20px; text-align: center;">
                 This service allows you to fill out, sign, and submit an ICLA using your browser.<br/><br/>
                 <b>Please enter your primary email address to begin the ICLA process</b>:<br/>
-                <input type="text" style="margin: 10px;" id="field_email" placeholder="foo@bar.baz"><br/>
-                <button style="margin: 0px; font-size: 22px;" onclick="verify(window.location.hostname.split('.')[0]);">Verify my address</button>
+                <input type="text" style="margin-top: 10px;" id="field_email" placeholder="foo@bar.baz">
+                <div style="margin: 0 auto; text-align: center; margin-top: -24px;">
+                <a href="#" onclick="javascript:void(verify(window.location.hostname.split('.')[0]););" class="button button-blue right" style="float: none;"><span class="btn-text">Verify my email address</span><span class="round"><i class="fa fa-chevron-right"></i></span></a>
+                </div>
             </p>
             <p style="padding: 20px;">
                 <i>Once you have submitted your email address to the
