@@ -28,20 +28,21 @@ html {
     display: inline-block;
     position: relative;
     border-radius: 50%;
-    background: #EEE;
-    color: #222;
-    border: 2px solid #7ED320;
+    background: #555;
+    color: #FFF;
+    border: 2px solid #AFD100;
     text-align: center;
     width: 30px;
     height: 30px;
-    font-size: 24px;
+    font-size: 18px;
+    font-weight: bold;
     line-height: 30px;
     overflow: hidden;
 }
 
 .step_circle.active {
     color: #FFF;
-    background: #7ED320;
+    background: #AFD100;
 }
 
 .step_circle:hover {
@@ -51,7 +52,7 @@ html {
 .step_divider {
     display: inline-block;
     position: relative;
-    background: #7ED320;
+    background: #AFD100;
     color: #222;
     border-top: 15px solid #FFF;
     border-bottom: 15px solid #FFF;
