@@ -5,6 +5,7 @@ import re
 import sys
 import os
 import yaml
+import requests
 
 yml = yaml.safe_load(open('../config.yaml').read())
 js = json.loads(sys.stdin.read())
