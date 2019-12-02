@@ -19,7 +19,16 @@ if re.match(r"^[-a-f0-9]+$", token):
         pyaml = yaml.safe_load(open('../recipients/%s.yaml' % recipient).read())
         for v in pyaml['questions']:
             if v.get('feed'):
-                tmpyml = yaml.safe_load(open('../recipients/%s' % v.get('feed')).read())
+                feed = v['feed']
+                tmpyml = []
+                if feed.startswith('https://'):
+                    feed_data = requests.get(feed).text
+                else:
+                    feed_data = open('../recipients/%s' % feed).read()
+                if feed.endswith('.yaml') or feed.endswith('.yml'):
+                    tmpyml = yaml.safe_load(feed_data)
+                elif feed.endswith('.json'):
+                    tmpyml = json.loads(feed_data)
                 v['list'] = tmpyml
         js = json.dumps(pyaml);
 
