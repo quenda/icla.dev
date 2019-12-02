@@ -7,10 +7,11 @@ import os
 import yaml
 import requests
 import time
+import tempfile
 
 def url_cached(url):
     xurl = url.replace('https://', '').replace('/', '_')
-    fpath = os.path.join('/tmp', xurl)
+    fpath = os.path.join(tempfile.gettempdir(), xurl)
     if os.path.exists(fpath):
         now = time.time()
         if os.path.getctime(fpath) > (now - 1800):
