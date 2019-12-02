@@ -44,6 +44,9 @@ questions:
   regex: "^[a-z0-9][a-z0-9]+$"
   regexfail: Your username must be at least two characters, and only a-z and 0-9 may
     be used.
+  feed: https://whimsy.apache.org/public/public_ldap_people.json
+  test: "return (!Object.keys(question.list['people']).has(value))"
+  testfail: This user ID is already in use, pick another
 - id: project
   type: select
   question: Have you been invited to join a specific Apache project?
