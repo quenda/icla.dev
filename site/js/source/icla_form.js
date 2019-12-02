@@ -62,6 +62,7 @@ function make_step_div(len, at) {
 function gateway_callback(state, json) {
     globData = state;
     let wizard = document.getElementById('wizard');
+    wizard.innerHTML = '';
     questions = json.questions;
     rdata = json;
     if (!questions) {
