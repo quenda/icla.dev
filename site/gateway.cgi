@@ -6,6 +6,20 @@ import sys
 import os
 import yaml
 import requests
+import time
+
+def url_cached(url):
+    xurl = url.replace('https://', '').replace('/', '_')
+    fpath = os.path.join('/tmp', xurl)
+    if os.path.exists(fpath):
+        now = time.time()
+        if os.path.getctime(fpath) > (now - 1800):
+            return open(fpath).read()
+    data = requests.get(url).text
+    with open(fpath, "w") as f:
+        f.write(data)
+        f.close()
+    return data
 
 yml = yaml.safe_load(open('../config.yaml').read())
 js = json.loads(sys.stdin.read())
@@ -23,7 +37,7 @@ if re.match(r"^[-a-f0-9]+$", token):
                 feed = v['feed']
                 tmpyml = []
                 if feed.startswith('https://'):
-                    feed_data = requests.get(feed).text
+                    feed_data = url_cached(feed)
                 else:
                     feed_data = open('../recipients/%s' % feed).read()
                 if feed.endswith('.yaml') or feed.endswith('.yml'):
