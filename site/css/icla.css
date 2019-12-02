@@ -295,3 +295,8 @@ a.button.left:hover i {
   right: auto;
   left: 3px;
 }
+
+#question_error {
+  text-align: center;
+  color: #E30;
+}

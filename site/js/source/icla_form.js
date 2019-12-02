@@ -78,11 +78,14 @@ function gateway_callback(state, json) {
     let _question = _div({class: 'question_wrapper', id: 'question_wrapper'});
     wizard.inject(_question);
     
+    let _questione = _div({class: 'question_error', id: 'question_error'});
+    wizard.inject(_questione);
+    
     pre_wizard();
 }
 
 function prettybutton(txt, dir, onclick, color = 'green') {
-    let btn = _a({href:'javascript:void();', onclick: `javascript:void(${onclick});`, class: `button button-${color} ${dir}`});
+    let btn = _a({href:'javascript:void(0);', onclick: `javascript:void(${onclick});`, class: `button button-${color} ${dir}`});
     let span = _span({class: 'btn-text'}, txt);
     if (dir == 'right') {
         let cur = _span({class: 'round'}, _i({class: 'fa fa-chevron-right'}));
@@ -110,6 +113,33 @@ function pre_wizard() {
 function wizard_step(x) {
     document.getElementById('wtitle').style.display = 'block';
     document.getElementById('steps').style.display = 'block';
+    
+    let qe = document.getElementById('question_error');
+    qe.innerHTML = ''; // reset question borker
+    
+    
+    let xq = questions[curstep];
+    
+    // Regex check?
+    if (xq.regex) {
+        let val = document.getElementById('field_' + xq.id).value;
+        let re = new RegExp(xq.regex);
+        if (val.length > 0 && !val.match(re)) {
+            qe.innerText = xq.regexfail || "Invalid syntax!";
+            return;
+        }
+    }
+    
+    // Value function?
+    if (xq.test) {
+        let value = document.getElementById('field_' + xq.id).value;
+        let question = xq;
+        let xf = new Function('question', 'value', xq.test);
+        if (!xf(question, value)) {
+            qe.innerText = xq.testfail || "Invalid value!";
+            return;
+        }
+    }
     
     if (curstep != x && curstep < questions.length) {
         let q = questions[curstep];
