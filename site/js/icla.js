@@ -879,7 +879,7 @@ function wizard_step(x) {
     qe.innerHTML = ''; // reset question borker
     
     
-    let xq = questions[curstep];
+    let xq = questions[curstep] || {};
     
     // Regex check?
     if (xq.regex) {
